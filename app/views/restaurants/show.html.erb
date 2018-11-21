@@ -2,8 +2,6 @@
 <p>Category: <%= @restaurant.category %></p>
 <p>Address: <%= @restaurant.address %></p>
 <p>Phone: <%= @restaurant.phone_number %></p>
-<%= link_to 'back to all restaurants', restaurants_path %>
-<%= link_to 'add a review', new_restaurant_review_path(@restaurant), class: "btn btn-primary"  %>
 <ul>
   <% @reviews.each do |review| %>
   <li>
@@ -15,3 +13,10 @@
   </li>
   <% end %>
 </ul>
+<h3>Add a new review</h3>
+<%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating, as: :radio_buttons, collection: (0..5).to_a %>
+  <%= f.submit "add a review", class: "btn btn-primary" %>
+<% end %>
+<%= link_to 'back to all restaurants', restaurants_path %>

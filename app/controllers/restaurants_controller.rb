@@ -7,6 +7,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     # @reviews = Review.where(restaurant_id: params[:id])
     @reviews = @restaurant.reviews
+    @review = Review.new
   end
 
   def new
